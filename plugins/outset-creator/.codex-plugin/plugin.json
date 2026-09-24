@@ -1,0 +1,33 @@
+{
+  "name": "outset-creator",
+  "version": "0.1.0",
+  "description": "Author Outset compendiums, manage monsters, build scenes, and generate reusable assets.",
+  "author": {
+    "name": "Outset VTT",
+    "url": "https://github.com/outset-vtt"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Outset Creator",
+    "shortDescription": "Create compendiums, monsters, scenes, and assets.",
+    "longDescription": "Public creator workflows for Outset. Compendium authoring works with local files; live monster, scene, and asset operations require a separately connected Outset MCP server.",
+    "developerName": "Outset VTT",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "Help me author an original Outset compendium.",
+      "Create a monster using my campaign rules.",
+      "Build a playable encounter from my map."
+    ]
+  },
+  "homepage": "https://github.com/outset-vtt/agent-plugins",
+  "repository": "https://github.com/outset-vtt/agent-plugins",
+  "license": "MIT",
+  "keywords": [
+    "outset",
+    "vtt",
+    "compendium",
+    "tabletop",
+    "mcp"
+  ]
+}
