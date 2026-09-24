@@ -27,7 +27,7 @@ This is a skills-only package. Connect and authorize your Outset MCP separately 
 
 ## Status and contributing
 
-Initial public release: **0.1.0**. Skill structure and references are checked in CI. Live MCP workflows are adapted from Outset's authoring procedures; this repository's checks do not exercise a production account, spend credits, or install content.
+Current public release: **0.2.0**. Compendium authoring defaults to the built-in SRD 5.2.1 base. Skill structure and references are checked in CI. Live MCP workflows are adapted from Outset's authoring procedures; this repository's checks do not exercise a production account, spend credits, or install content.
 
 Keep contributions useful to creators. Public tool names, schemas, permission scopes, coordinate conventions, and recovery semantics are welcome. Do not commit credentials, signed URLs, private account/campaign data, customer content, or instructions that require an unpublished repository. Use original or appropriately attributed examples. Run `python3 scripts/validate.py` before submitting a change.
 
