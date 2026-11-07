@@ -33,7 +33,7 @@ The [public authoring guide](https://github.com/outset-vtt/compendium-authoring-
 
 ## Downloads and compatibility
 
-[Tagged releases](https://github.com/outset-vtt/agent-plugins/releases) provide fixed snapshots. The latest tagged plugin is **0.2.0**; `main` may contain newer documentation. The release's `outset-creator.zip` is a Codex plugin bundle. Claude skill uploads use individual skill ZIPs; [installation instructions](guides/install-skills.md) explain packaging.
+[Release 0.3.0](https://github.com/outset-vtt/agent-plugins/releases/tag/v0.3.0) includes `outset-creator.zip` for Codex plugin-capable hosts, four individual skill ZIPs for Claude/Cowork, and `SHA256SUMS`. Choose your download in [installation instructions](guides/install-skills.md). `main` may contain newer changes than a tagged release.
 
 This package contains skills, not an MCP connection. Live operations use the separately authorized Outset service. Tool names may retain `dm-harness`; discover the live schemas before calling tools. Compendium examples target D&D SRD 5.2.1.
 
@@ -41,9 +41,10 @@ This package contains skills, not an MCP connection. Live operations use the sep
 
 ```sh
 python3 scripts/validate.py
+python3 scripts/test_packaging.py
 python3 scripts/package_plugin.py
 ```
 
-Validation checks the manifest, skill metadata and repository-relative links. Packaging creates `dist/outset-creator.zip`. Neither command signs into Outset, exercises live tools, spends credits or installs content.
+Validation checks the manifest, skill metadata and repository-relative links. Packaging creates five ZIPs and checksums under `dist/`; its artifact test checks skill contents, bundled references, exclusion of untracked files and repeatability. See [release verification](guides/releasing.md). These commands do not sign into Outset, exercise live tools, spend credits or install content.
 
 Use original or appropriately attributed examples. Keep credentials, signed URLs, private campaign data and dependencies on unpublished repositories out of contributions. Code, skills and original examples are [MIT licensed](LICENSE).
