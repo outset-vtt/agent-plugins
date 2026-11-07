@@ -52,7 +52,14 @@ class PackagingTest(unittest.TestCase):
                 digest, filename = line.split("  ")
                 self.assertEqual(digest, hashlib.sha256((dist / filename).read_bytes()).hexdigest())
             first_build = {path.name: path.read_bytes() for path in dist.iterdir()}
+            (dist / "retired-skill.zip").write_bytes(b"obsolete release artifact")
+            (dist / "old-notes.txt").write_text("obsolete output")
             subprocess.run(command, cwd=root, check=True, capture_output=True)
+            self.assertEqual(first_build, {path.name: path.read_bytes() for path in dist.iterdir()})
+            # A source read failure must not discard the last successful build.
+            (plugin / "skills/build-outset-scenes/SKILL.md").unlink()
+            failed = subprocess.run(command, cwd=root, capture_output=True)
+            self.assertNotEqual(failed.returncode, 0)
             self.assertEqual(first_build, {path.name: path.read_bytes() for path in dist.iterdir()})
 
 

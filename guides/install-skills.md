@@ -6,7 +6,7 @@ Clone this repository and give your agent the selected skill directory under `pl
 
 For Codex, ask its skill installer:
 
-> Install the author-outset-compendium skill from https://github.com/outset-vtt/agent-plugins/tree/main/plugins/outset-creator/skills/author-outset-compendium
+> Install the author-outset-compendium skill from https://github.com/outset-vtt/agent-plugins/tree/v0.3.1/plugins/outset-creator/skills/author-outset-compendium
 
 Repeat with the desired skill directory for monsters, scenes or assets. See the [official skill documentation](https://developers.openai.com/codex/skills/). The [plugin directory](../plugins/outset-creator) also contains a `.codex-plugin/plugin.json` manifest for plugin-capable hosts. It can be packaged with `python3 scripts/package_plugin.py`; the resulting ZIP contains the manifest and skills at its root.
 
@@ -15,7 +15,7 @@ Repeat with the desired skill directory for monsters, scenes or assets. See the 
 Install the individual skills using [Claude Code's skill directories](https://code.claude.com/docs/en/skills). From a terminal on macOS or Linux:
 
 ```sh
-git clone https://github.com/outset-vtt/agent-plugins.git
+git clone --branch v0.3.1 --depth 1 https://github.com/outset-vtt/agent-plugins.git
 cd agent-plugins
 mkdir -p ~/.claude/skills
 cp -R plugins/outset-creator/skills/* ~/.claude/skills/
@@ -29,18 +29,18 @@ Start Claude Code in your project and invoke a skill directly:
 /author-outset-compendium Add an original monster to my SRD 5.2.1 compendium.
 ```
 
-You can also ask Claude to use a skill by name. To update a copied installation, pull this repository's latest changes and copy the selected directories again.
+You can also ask Claude to use a skill by name. To update a copied installation, check out the desired published release tag and copy its selected directories again. Do not use `git pull` on this detached release checkout. Keep the skills and their guide on the matching version.
 
 ## Claude and Cowork
 
-Download one or more individual skill ZIPs from [release 0.3.0](https://github.com/outset-vtt/agent-plugins/releases/tag/v0.3.0):
+Download one or more individual skill ZIPs from [release 0.3.1](https://github.com/outset-vtt/agent-plugins/releases/tag/v0.3.1):
 
 | Skill | Download |
 | --- | --- |
-| Compendium authoring | [author-outset-compendium.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.0/author-outset-compendium.zip) |
-| Scene building | [build-outset-scenes.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.0/build-outset-scenes.zip) |
-| Asset generation | [generate-outset-assets.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.0/generate-outset-assets.zip) |
-| Monster management | [manage-outset-monsters.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.0/manage-outset-monsters.zip) |
+| Compendium authoring | [author-outset-compendium.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.1/author-outset-compendium.zip) |
+| Scene building | [build-outset-scenes.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.1/build-outset-scenes.zip) |
+| Asset generation | [generate-outset-assets.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.1/generate-outset-assets.zip) |
+| Monster management | [manage-outset-monsters.zip](https://github.com/outset-vtt/agent-plugins/releases/download/v0.3.1/manage-outset-monsters.zip) |
 
 Each ZIP contains one skill folder with `SKILL.md`, supporting references where needed, and the license. Upload the ZIP directly using [Claude's custom skill upload](https://support.claude.com/en/articles/12512180-use-skills-in-claude); no local repackaging is needed.
 

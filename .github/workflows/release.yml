@@ -1,0 +1,40 @@
+name: Publish verified release
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-release
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 scripts/validate.py
+      - run: python3 scripts/test_packaging.py
+      - run: python3 scripts/package_plugin.py
+      - name: Publish the exact checked revision
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(python3 -c "import json; print(json.load(open('plugins/outset-creator/.codex-plugin/plugin.json'))['version'])")
+          tag="v$version"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test -z "$(git ls-remote --tags origin "refs/tags/$tag")"
+          gh release view "$tag" --repo outset-vtt/compendium-authoring-guide --json isDraft --jq '.isDraft' | grep -qx false
+          assets=(dist/outset-creator.zip dist/author-outset-compendium.zip dist/build-outset-scenes.zip dist/generate-outset-assets.zip dist/manage-outset-monsters.zip dist/SHA256SUMS)
+          gh release create "$tag" "${assets[@]}" --target "$GITHUB_SHA" --title "Outset Creator $version" --notes-file RELEASE_NOTES.md --draft
+          gh release download "$tag" --dir "$RUNNER_TEMP/release-downloads"
+          for asset in "${assets[@]}"; do cmp "$asset" "$RUNNER_TEMP/release-downloads/$(basename "$asset")"; done
+          (cd "$RUNNER_TEMP/release-downloads" && sha256sum -c SHA256SUMS)
+          gh release edit "$tag" --draft=false --latest

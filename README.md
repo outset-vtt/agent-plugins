@@ -33,7 +33,7 @@ The [public authoring guide](https://github.com/outset-vtt/compendium-authoring-
 
 ## Downloads and compatibility
 
-[Release 0.3.0](https://github.com/outset-vtt/agent-plugins/releases/tag/v0.3.0) includes `outset-creator.zip` for Codex plugin-capable hosts, four individual skill ZIPs for Claude/Cowork, and `SHA256SUMS`. Choose your download in [installation instructions](guides/install-skills.md). `main` may contain newer changes than a tagged release.
+[Release 0.3.1](https://github.com/outset-vtt/agent-plugins/releases/tag/v0.3.1) includes `outset-creator.zip` for Codex plugin-capable hosts, four individual skill ZIPs for Claude/Cowork, and `SHA256SUMS`. Choose your download in [installation instructions](guides/install-skills.md). The authoring skill pins its guide references to **v0.3.1**; `main` may contain newer changes than a tagged release. See the [first-use verification record](https://github.com/outset-vtt/compendium-authoring-guide/blob/v0.3.1/guides/first-use-verification.md): Codex skill discovery and authenticated MCP reads passed, but production rules installation blocked the gameplay check.
 
 This package contains skills, not an MCP connection. Live operations use the separately authorized Outset service. Tool names may retain `dm-harness`; discover the live schemas before calling tools. Compendium examples target D&D SRD 5.2.1.
 

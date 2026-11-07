@@ -73,3 +73,5 @@ Confirm the campaign name and role before asking for changes. This check does no
 ## Verification scope
 
 The public [resource metadata](https://api.outset-vtt.gg/.well-known/oauth-protected-resource) and [authorization metadata](https://api.outset-vtt.gg/.well-known/oauth-authorization-server) were checked on November 7, 2026. Host commands follow the official references above. This guide is not a claim that every host/version has passed an end-to-end OAuth test; use the read-only check to verify your own connection.
+
+The [0.3.1 first-use record](https://github.com/outset-vtt/compendium-authoring-guide/blob/v0.3.1/guides/first-use-verification.md) includes a successful authenticated read using an existing MCP session. It does not cover fresh OAuth consent or all supported host installations.

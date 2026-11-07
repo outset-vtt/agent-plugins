@@ -31,6 +31,9 @@ for plugin in plugins:
         assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',skill.name)
         assert 0 < len(header['description']) <= 1024
         assert '[TODO:' not in text
+        guide_links = re.findall(r'https://github.com/outset-vtt/compendium-authoring-guide[^)\s]*', text)
+        for link in guide_links:
+            assert re.match(r'https://github.com/outset-vtt/compendium-authoring-guide/(?:blob|tree)/v' + re.escape(manifest['version']) + r'(?:/|$)', link), 'Pin guide references to the matching release: ' + link
         count += 1
 check_links()
 print(f'Validated {len(plugins)} plugin and {count} skills.')
