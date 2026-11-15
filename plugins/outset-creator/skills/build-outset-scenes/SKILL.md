@@ -26,6 +26,15 @@ Resolve the campaign, new or existing scene, tactical purpose, footprint, terrai
 
 Do not author persistent characters, ownership, raw document identities, actor IDs, fog exploration, live encounters, chat, dice, or live audio through a blueprint. Do not update or remove existing characters or portals. For persistent monster sheets and existing token links, use the monster tools; scene builds own the isolated sheets for tokens they create.
 
+## Give named NPCs real sheets
+
+Give every named NPC a persistent NPC sheet through the actor tools (`actors:write`), not a monster token, so the DM can roll for them and the sheet ships with the adventure. Call `get_actor_authoring_context`, then `create_actor`, then `place_actor_token` or `link_actor_to_token`.
+
+- **Role NPCs** (merchant, guard, innkeeper, priest): start from the closest installed stat block. Find it with `list_monster_compendium_entries` and pass `draft.compendiumSource` with its `packId` and `entryId`. Good SRD starting points are Commoner, Guard, Noble, Bandit, Cultist, Priest, Mage, Knight, Spy, Scout and Tough. Give the NPC its own name, race, job title, notes and shop stock; omit rules, fields, resources and abilities, which the stat block supplies.
+- **NPCs who act like adventurers:** build them on a character actor type with a class.
+- **Existing NPCs without rules:** adopt a stat block in place with `update_actor` and `patch.compendiumSource`. Name, notes, inventory, owners and token are kept.
+- Unnamed crowds and combat-only creatures stay monster tokens.
+
 ## Preview, apply, and recover
 
 Read [approval and recovery](references/approval-and-recovery.md). Preview does not change scene content or spend generation credits. Render the exact artifact and show the diff, removals, warnings, generation prompts, estimate, and proposed ceiling before apply. A changed blueprint or stale preview needs a fresh visible artifact and matching approval.
